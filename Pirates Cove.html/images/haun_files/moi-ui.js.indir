@@ -1,0 +1,411 @@
+$(document).ready(function() {
+$(".detail-tab-content").eq(0).show();
+	$("#detail-tab-titles li").eq(0).addClass("active-tab");
+	$("#detail-tab-titles li").click(function(){
+		var number = $(this).index();
+		$("#detail-tab-titles li").removeClass("active-tab");
+		$(".detail-tab-content").hide().eq(number).fadeIn("slow");
+		$("#detail-tab-titles li").eq(number).addClass("active-tab");
+	});
+});				
+
+NickUniverse.UI = ( function( $ )
+{
+	/* ========================================================================
+	 * Private Properties & Methods
+	 * ===================================================================== */
+
+	var
+
+	mainEl = 'body',
+
+	breakpoints = {
+		mobile: 576,
+		tablet: 784
+	},
+	layout = '',
+
+	activeClass = 'is-active',
+	resizeTimeout,
+
+	// feature detectors
+	transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+	hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints > 0,
+	msTouch = ( navigator.msPointerEnabled ? true : false ),
+
+
+	/* Layout
+	 * --------------------------------------------------------------------- */
+
+	/**
+	 * Check for a layout change based on breakpoints.
+	 *
+	 * @return boolean True if the layout changed, false if not
+	 */
+	checkLayout = function()
+	{
+		var wWidth = windowDimensions( 'width' );
+
+		if ( wWidth >= breakpoints.tablet && layout != 'desktop' ) {
+			layout = 'desktop';
+			return $( mainEl ).trigger( $.Event( 'layoutChange' ) );
+		} else if ( ( wWidth >= breakpoints.mobile && wWidth < breakpoints.tablet ) && layout != 'tablet' ) {
+			layout = 'tablet';
+			return $( mainEl ).trigger( $.Event( 'layoutChange' ) );
+		} else if ( wWidth < breakpoints.mobile && layout != 'mobile' ) {
+			layout = 'mobile';
+			return $( mainEl ).trigger( $.Event( 'layoutChange' ) );
+		}
+
+		return false;
+	},
+
+
+	/**
+	 * Make changes based on the current layout.
+	 */
+	changeLayout = function()
+	{
+		/* Tablet & Desktop */
+
+		if ( layout == 'tablet' || layout == 'desktop' ) {}
+
+		/* Desktop */
+
+		if ( layout == 'desktop' ) {}
+
+		/* Tablet & Mobile */
+
+		if ( layout == 'mobile' || layout == 'tablet' ) {}
+
+		/* Tablet */
+
+		if ( layout == 'tablet' ) {}
+
+		/* Mobile */
+
+		if ( layout == 'mobile' ) {}
+	},
+
+
+	/* Utilities
+	 * --------------------------------------------------------------------- */
+
+	/**
+	 * Get the window dimensions.
+	 *
+	 * @param  string specific The specific dimension to return
+	 *
+	 * @return array|number The height/width array, or height|width string
+	 */
+	windowDimensions = function( specific )
+	{
+		var wHeight = ( window.innerHeight ) ? window.innerHeight : $( window ).height(),
+			wWidth = $( window ).width();
+
+		if ( typeof specific == 'string' ) {
+			if ( specific == 'height' || specific == 'h' ) {
+				return wHeight;
+			} else if ( specific == 'width' || specific == 'w' ) {
+				return wWidth;
+			}
+		} else {
+			return {
+				height: wHeight,
+				width: wWidth
+			};
+		}
+	};
+
+
+
+	/* ========================================================================
+	 * Public Methods & Properties
+	 * ====================================================================== */
+
+	return {
+
+		/**
+		 * Initalize the app.
+		 */
+		initialize: function()
+		{
+			var context = this;
+
+
+			/* Internet Explorer */
+
+			if ( BrowserDetect.browser == 'Explorer' ) {
+				$( 'html' )
+					.addClass( 'ie' )
+					.addClass( 'ie' + parseInt( BrowserDetect.version ) );
+			}
+
+
+			/* Resizing & Layout */
+
+			$( window ).on( 'resize', function() {
+				// @src http://stackoverflow.com/a/668185
+				if ( resizeTimeout !== false ) {
+					clearTimeout(resizeTimeout);
+				}
+				resizeTimeout = setTimeout( function() {
+					checkLayout();
+					$( mainEl ).trigger( 'resized' );
+				}, 200 );
+			} );
+			$( mainEl ).on( 'layoutChange', function() {
+				changeLayout();
+			} );
+
+
+			/* Retina Background Images */
+
+			$( '[data-background-image]' ).each( function() {
+				var $element = $( this );
+
+				if ( window.devicePixelRatio >= 1.3 && $element.filter( '[data-background-image-2x]' ).length ) {
+					$element.css( 'background-image', 'url(' + $element.attr( 'data-background-image-2x' ) + ')' );
+				} else {
+					$element.css( 'background-image', 'url(' + $element.attr( 'data-background-image' ) + ')' );
+				}
+			} );
+
+
+			/* Today Toggle */
+
+			var $todayMore = $( '.today__more' );
+
+			$( '.today__brief__title__label' ).on( 'click', function() {
+				$( this ).toggleClass( activeClass );
+				$todayMore.slideToggle( 'fast' );
+			} );
+
+
+			/* Primary Nav Toggle */
+
+			var primaryNavToggle = document.createElement( 'div' ),
+			    $aside = $( '.header__aside' );
+			primaryNavToggle.className = 'header__aside-toggle';
+			$( primaryNavToggle )
+				.append( '<span class="header__aside-toggle__icon"></span>' )
+				.append( '<span class="header__aside-toggle__text">Menu</span>' )
+				.data( 'state', false );
+			$aside.before( primaryNavToggle );
+
+			var $primaryNavToggle = $( '.header' ).find( '.header__aside-toggle' );
+			$primaryNavToggle
+				.fastClick( function() {
+					var $toggle = $( this );
+
+					if ( $toggle.data( 'state' ) === true ) {
+						$aside.slideUp( 'fast' );
+						$toggle
+							.removeClass( activeClass )
+							.data( 'state', false );
+					} else {
+						$aside.slideDown( 'fast' );
+						$toggle
+							.addClass( activeClass )
+							.data( 'state', true );
+					}
+				} );
+
+
+			/* Search Placeholder */
+
+			if ( Modernizr.input.placeholder ) {
+				$( '.header__search form[role="search"] input[type="text"]' ).attr( 'placeholder', 'Sitede Ara..' );
+			}
+
+
+			/* Ride Filtering */
+
+			$( '.rides' ).each( function() {
+				$rides = $( '.ride-thumbs', this );
+
+				$( '.filter__buttonbar a', $( this ) ).click( function( e ) {
+					e.preventDefault();
+
+					$( '.filter__buttonbar a' ).removeClass( 'is-active' );
+					$( this ).addClass( 'is-active' );
+
+					$rides.shuffle( 'shuffle', $( this ).data( 'group' ) );
+				} );
+
+				$rides.shuffle( {
+					itemSelector: '.ride-thumb'
+				} );
+			} );
+
+
+			/* Gallery */
+
+			var overlayOn = function() {
+					$( '<div id="imagelightbox-overlay"></div>' ).appendTo( 'body' );
+				},
+				overlayOff = function() {
+					$( '#imagelightbox-overlay' ).remove();
+				};
+
+			// ARROWS
+
+			var arrowsOn = function( instance, selector ) {
+				var $arrows = $( '<button type="button" class="imagelightbox-arrow imagelightbox-arrow-left"></button><button type="button" class="imagelightbox-arrow imagelightbox-arrow-right"></button>' );
+
+				$arrows.appendTo( 'body' );
+
+				$arrows.on( 'click touchend', function( e )	{
+					e.preventDefault();
+
+					var $this	= $( this ),
+						$target	= $( selector + '[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"]' ),
+						index	= $target.index( selector );
+
+					if( $this.hasClass( 'imagelightbox-arrow-left' ) ) {
+						index = index - 1;
+						if( !$( selector ).eq( index ).length )
+							index = $( selector ).length;
+					}
+					else {
+						index = index + 1;
+						if( !$( selector ).eq( index ).length )
+							index = 0;
+					}
+
+					instance.switchImageLightbox( index );
+					return false;
+				});
+			},
+			arrowsOff = function() {
+				$( '.imagelightbox-arrow' ).remove();
+			};
+
+			var gallerySelector = '.gallery a';
+			var galleryInstance = $( gallerySelector ).imageLightbox( {
+				onStart: function() { overlayOn(); arrowsOn(galleryInstance, gallerySelector); },
+				onEnd:   function() { overlayOff(); arrowsOff(); },
+			} );
+
+
+			/* Heroes */
+
+			$( '.hero[data-link]' ).each( function() {
+				var hero = $( this );
+
+				// Allow standard links within hero to function as normal
+				hero.find( 'a' ).on( 'click', function( e ) {
+					e.stopPropagation();
+				} );
+
+				hero.on( 'click', function( e ) {
+					if ( hero.data( 'link' ) ) {
+						document.location.href = hero.data( 'link' );
+					}
+				} );
+			} );
+
+
+			/* Letter Swaps */
+
+			$( 'h1 strong:not([class])' ).each( function() {
+				this.className = this.innerText.toUpperCase();
+			} );
+
+
+
+			/* Video Lightbox */
+
+			/*$('.hero__play_button').on('click', function(){
+				if ( layout == 'desktop' ) {
+
+					// Modify url into embed url
+					var videoUrl = $(this).attr('href').replace('watch?v=', 'embed/index.html');
+
+					$('body').append('<div class="video-lightbox">\
+						<iframe width="900" height="506" src="' + videoUrl + '?showinfo=0&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>\
+						<div class="close-button"></div>\
+						</div>');
+					$('.video-lightbox').fadeIn();
+
+					return false;
+				}
+			});*/
+			
+
+			// Close Video Lightbox
+			$('body').on('click', '.video-lightbox, .close-button', function(){
+				$('.video-lightbox').fadeOut(200);
+
+				setTimeout(function(){
+					$('.video-lightbox').remove();
+				}, 200);
+			});
+
+
+			/* Newsletter Age Verification */
+
+			function age( year, month, day ) {
+				if ( !year || !month || !day ) return false;
+
+				var birthdate = new Date( year, month - 1, day ),
+					ageDifMs = new Date() - birthdate.getTime(),
+					ageDate = new Date( ageDifMs ); // miliseconds from epoch
+
+				return Math.abs( ageDate.getUTCFullYear() - 1970 );
+			}
+
+			$( '.formstack__screen--birthdate' ).each( function() {
+				var $screen = $( this ),
+					$form = $screen.find( 'form' );
+
+				if ( Cookies.get( 'newsletter-underage' ) ) {
+					$form.before( '<p class="error"><strong>Sorry, you do not meet our minimum age requirement.</strong></p>' );
+				} else {
+					$form.show();
+				}
+
+				$form.on( 'submit', function() {
+					var year = $form.find( 'select[name="birthdate[year]"]' ).val(),
+						month = $form.find( 'select[name="birthdate[month]"]' ).val(),
+						day = $form.find( 'select[name="birthdate[day]"]' ).val();
+
+					if ( year == '' || month == '' || day == '' ) {
+						return false;
+					} else if ( age( year, month, day ) >= 13 ) {
+						$screen.hide();
+						$screen.next( '.formstack__screen' ).show();
+					} else {
+						Cookies.set( 'newsletter-underage', 1, { expires: 1 } );
+						$form
+							.before( '<p class="error"><strong>Sorry, you do not meet our minimum age requirement.</strong></p>' )
+							.remove();
+					}
+
+					return false;
+				} );
+			} );
+
+
+			/* After initialized, trigger resize event */
+
+			$(window).resize();
+		},
+
+		/**
+		 * Get the breakpoints.
+		 *
+		 * @param  string specific The specific breakpoint to return
+		 *
+		 * @return array|number The breakpoints array or breakpoint string
+		 */
+		getBreakpoints: function( breakpoint )
+		{
+			if ( null != breakpoint ) {
+				return breakpoints[ breakpoint ];
+			}
+			return breakpoints;
+		}
+	};
+
+} )( jQuery );

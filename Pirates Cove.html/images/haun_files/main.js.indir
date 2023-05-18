@@ -1,0 +1,76 @@
+/*
+Project		: MoiPark
+Developer	: Hasan Basri Balcı
+Author URI	: www.basribalci.com
+*/
+jQuery( document ).ready( function( $ ) {
+	NickUniverse.UI.initialize();
+	
+	$("input.cardID").mask("99999999");
+	$("input.telefon").mask("999-999-9999");
+	$("input.dtarih").mask("99-99-9999");
+	$("input.dtarih").datepicker({
+		dateFormat: "dd-mm-yy",
+		monthNames: [ "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" ],
+		dayNamesMin: [ "Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct" ],
+		firstDay:1,
+		changeYear: true
+	});
+	
+	$(".wpcf7-form").validate({
+			rules: {
+				eposta: {
+					required: true,
+					email: true
+				},
+				cardID: {required: true},
+				ad: {required: true},
+				soyad: {required: true},
+				dtarih: {required: true},
+				telefon: {required: true},
+			},
+			messages: {
+				cardID: "Lütfen Moi Fun Card ID numaranızın son 8 hanesini giriniz.",
+				ad: "Lütfen Adınızı Giriniz.",
+				soyad: "Lütfen Soyadınızı Giriniz.",
+				dtarih: "Lütfen Doğum Tarihi Giriniz.",
+				eposta: "Lütfen Geçerli bir mail adresi giriniz..",
+				telefon: "Lütfen cep telefon numaranızı giriniz..",
+			}
+	});
+	
+	
+	$('.gallerySlider').owlCarousel({
+    loop:true,
+    margin:0,
+    responsiveClass:true,
+	autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:false
+        },
+        600:{
+            items:1,
+            nav:false
+        },
+        1000:{
+            items:1,
+            nav:false,
+            loop:false
+        }
+    }
+})
+
+
+} );
+
+// Let tablets view desktop layout
+if ( 'orientation' in window
+     && screen.width >= NickUniverse.getBreakpoints( 'mobile' )
+     && screen.width <  NickUniverse.getBreakpoints( 'tablet' ) ) {
+
+	jQuery( 'head meta[name="viewport"]' ).attr( 'content', 'width=1200' );
+}

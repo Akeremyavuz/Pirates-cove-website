@@ -1,0 +1,199 @@
+/*
+Project		: MoiPark
+Author 		: Hasan Basri Balcı
+*/
+
+@font-face {
+	font-family:'GothamX-Black';
+	src: url('GothamX-Black.eot');
+	src: url('GothamX-Blackd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Black.woff') format('woff'),
+		url('GothamX-Black.ttf') format('truetype'),
+		url('GothamX-Black.svg#GothamX-Black') format('svg');
+	font-weight: 900;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-BlackItalic';
+	src: url('GothamX-BlackItalic.eot');
+	src: url('GothamX-BlackItalicd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-BlackItalic.woff') format('woff'),
+		url('GothamX-BlackItalic.ttf') format('truetype'),
+		url('GothamX-BlackItalic.svg#GothamX-BlackItalic') format('svg');
+	font-weight: 900;
+	font-style: italic;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Bold';
+	src: url('GothamX-Bold.eot');
+	src: url('GothamX-Boldd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Bold.woff') format('woff'),
+		url('GothamX-Bold.ttf') format('truetype'),
+		url('GothamX-Bold.svg#GothamX-Bold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-BoldItalic';
+	src: url('GothamX-BoldItalic.eot');
+	src: url('GothamX-BoldItalicd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-BoldItalic.woff') format('woff'),
+		url('GothamX-BoldItalic.ttf') format('truetype'),
+		url('GothamX-BoldItalic.svg#GothamX-BoldItalic') format('svg');
+	font-weight: 700;
+	font-style: italic;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Regular';
+	src: url('GothamX.eot');
+	src: url('GothamXd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX.woff') format('woff'),
+		url('GothamX.ttf') format('truetype'),
+		url('GothamX.svg#GothamX-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Italic';
+	src: url('GothamX-Italic.eot');
+	src: url('GothamX-Italicd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Italic.woff') format('woff'),
+		url('GothamX-Italic.ttf') format('truetype'),
+		url('GothamX-Italic.svg#GothamX-Italic') format('svg');
+	font-weight: 400;
+	font-style: italic;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamCondX-Bold';
+	src: url('GothamCondX-Bold.eot');
+	src: url('GothamCondX-Boldd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamCondX-Bold.woff') format('woff'),
+		url('GothamCondX-Bold.ttf') format('truetype'),
+		url('GothamCondX-Bold.svg#GothamCondX-Bold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamCondX-Regular';
+	src: url('GothamCondX.eot');
+	src: url('GothamCondXd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamCondX.woff') format('woff'),
+		url('GothamCondX.ttf') format('truetype'),
+		url('GothamCondX.svg#GothamCondX-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamCondX-Light';
+	src: url('GothamCondX-Light.eot');
+	src: url('GothamCondX-Lightd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamCondX-Light.woff') format('woff'),
+		url('GothamCondX-Light.ttf') format('truetype'),
+		url('GothamCondX-Light.svg#GothamCondX-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamCondX-Medium';
+	src: url('GothamCondX-Medium.eot');
+	src: url('GothamCondX-Mediumd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamCondX-Medium.woff') format('woff'),
+		url('GothamCondX-Medium.ttf') format('truetype'),
+		url('GothamCondX-Medium.svg#GothamCondX-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Light';
+	src: url('GothamX-Light.eot');
+	src: url('GothamX-Lightd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Light.woff') format('woff'),
+		url('GothamX-Light.ttf') format('truetype'),
+		url('GothamX-Light.svg#GothamX-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Medium';
+	src: url('GothamX-Medium.eot');
+	src: url('GothamX-Mediumd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Medium.woff') format('woff'),
+		url('GothamX-Medium.ttf') format('truetype'),
+		url('GothamX-Medium.svg#GothamX-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-MediumItalic';
+	src: url('GothamX-MediumItalic.eot');
+	src: url('GothamX-MediumItalicd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-MediumItalic.woff') format('woff'),
+		url('GothamX-MediumItalic.ttf') format('truetype'),
+		url('GothamX-MediumItalic.svg#GothamX-MediumItalic') format('svg');
+	font-weight: 500;
+	font-style: italic;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-Thin';
+	src: url('GothamX-Thin.eot');
+	src: url('GothamX-Thind41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-Thin.woff') format('woff'),
+		url('GothamX-Thin.ttf') format('truetype'),
+		url('GothamX-Thin.svg#GothamX-Thin') format('svg');
+	font-weight: 250;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
+
+@font-face {
+	font-family:'GothamX-ThinItalic';
+	src: url('GothamX-ThinItalic.eot');
+	src: url('GothamX-ThinItalicd41d.eot?#iefix') format('embedded-opentype'),
+		url('GothamX-ThinItalic.woff') format('woff'),
+		url('GothamX-ThinItalic.ttf') format('truetype'),
+		url('GothamX-ThinItalic.svg#GothamX-ThinItalic') format('svg');
+	font-weight: 250;
+	font-style: italic;
+	font-stretch: normal;
+	unicode-range: U+0020-FB02;
+}
